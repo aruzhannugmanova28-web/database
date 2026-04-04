@@ -7,6 +7,7 @@ export const AstroSchema = new mongoose.Schema({
     universe: {type: String, required: false},
     telescope: {type: String, required: false},
     constellation: {type: String, required: false},
+    sect: {type: String, required: false},
     image: {type: String, required: true},
 });
 
@@ -18,5 +19,6 @@ export interface Astro extends mongoose.Document {
     universe: string, 
     telescope: string, 
     constellation: string, 
+    sect: string,
     image: string, 
 }

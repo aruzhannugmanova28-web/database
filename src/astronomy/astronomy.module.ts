@@ -3,7 +3,7 @@ import { AstroController } from './astronomy.controller';
 import { AstroService } from './astronomy.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AstroSchema } from './astronomy.model';
-import {LocationSchema} from 'scr/Locations/location.modle';
+import {LocationSchema} from 'src/Locations/location.modle';
 
 @Module({
     imports: [MongooseModule.forFeature([{name: 'Astro', schema: AstroSchema }])], 
