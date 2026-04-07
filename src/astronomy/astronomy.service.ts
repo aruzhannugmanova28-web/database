@@ -27,8 +27,8 @@ export class AstroService{
 
     async getbyName(name: string){
         const astros = await this.astroModel.find().exec();
-        const name = astros.filter((e)=> e.name === name);
-        return name.map(c => ({
+        const name_astro = astros.filter((e)=> e.name === name);
+        return name_astro.map(c => ({
             id: c.id,
             name: c.name, 
             type: c.type,
@@ -100,7 +100,7 @@ export class AstroService{
     constellation: string, 
     sect: string,
     image: string){
-        const updateAstro = await.this.findAstro(astroId);
+        const updateAstro = await this.findAstro(astroId);
 
         if (name) {
             updateAstro.name = name;
