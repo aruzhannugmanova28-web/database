@@ -20,6 +20,46 @@ export class AstroController {
         @Body('image') astroImage: string, 
         @Body('telescope') astroTelescope: string, 
         @Body('universe') astroUniverse: string, 
-        
-    )
+        @Body('sect') astroSect: string,
+    ) {
+
+        const generatedId= await this.astrosService.insertAstro(astroName, astroAge, astroConstellation, astroImage, astroSect, astroTelescope, astroType, astroUniverse);
+        return {id: generatedId};
+    }
+
+    @Get(':id')
+    async getAstroById(@Param('id') astroId: string,) {
+        const astro = await this.astrosService.getAstroById(astroId);
+
+        return astro;
+    }
+
+    @Patch(':id')
+    async updateAstroById(
+        @Param('id') astroId: string, 
+        @Body('name') astroName: string, 
+        @Body('age') astroAge: number, 
+        @Body('type') astroType: string, 
+        @Body('constellation') astroConstellation: string, 
+        @Body('image') astroImage: string, 
+        @Body('telescope') astroTelescope: string, 
+        @Body('universe') astroUniverse: string, 
+        @Body('sect') astroSect: string,
+    ) {
+        await this.astrosService.updateAstroById(astroId, astroName, astroAge, astroConstellation, astroImage, astroSect, astroTelescope, astroType, astroUniverse);
+        return null;
+    }
+
+    @Delete(':id')
+    async deleteAstroById(@Param('id') astroId: string,) {
+        await this.astrosService.deleteAstroById(astroId);
+        return null;
+    }
+
+    @Get('sect/nebulas')
+    async getAllNebulas(){
+        const astros = await this.astrosService.getAllANebulas();
+        return astros;
+    }
+
 }
