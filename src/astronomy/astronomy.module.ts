@@ -6,8 +6,7 @@ import { AstroSchema } from './astronomy.model';
 import {LocationSchema} from 'src/Locations/location.modle';
 
 @Module({
-    imports: [MongooseModule.forFeature([{name: 'Astro', schema: AstroSchema }])], 
-    MongooseModule.forFeature([{name: 'Location', schema: LocationSchema}])], 
+    imports: [MongooseModule.forFeature([{name: 'Astro', schema: AstroSchema }]), MongooseModule.forFeature([{name: 'Location', schema: LocationSchema}])], 
     controllers: [AstroController], 
     providers: [AstroService]
 })
