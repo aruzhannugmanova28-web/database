@@ -1,7 +1,7 @@
 import {Controller, Post, Patch, Delete, Body, Get, Param} from '@nestjs/common';
 import {AstroService} from './astronomy.service'
 
-@Controller('astros')
+@Controller('astro')
 export class AstroController {
     constructor(private readonly astrosService: AstroService){}
 
