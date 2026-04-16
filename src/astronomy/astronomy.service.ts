@@ -58,7 +58,6 @@ export class AstroService{
     }
 
     async insertAstro(
-    id: string, 
     name: string, 
     type: string, 
     age: number, 

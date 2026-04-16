@@ -23,7 +23,7 @@ export class AstroController {
         @Body('sect') astroSect: string,
     ) {
 
-        const generatedId= await this.astrosService.insertAstro(astroName, astroAge, astroConstellation, astroImage, astroSect, astroTelescope, astroType, astroUniverse);
+        const generatedId= await this.astrosService.insertAstro(astroName, astroType, astroAge, astroUniverse, astroTelescope, astroConstellation, astroSect, astroImage);
         return {id: generatedId};
     }
 
@@ -46,7 +46,7 @@ export class AstroController {
         @Body('universe') astroUniverse: string, 
         @Body('sect') astroSect: string,
     ) {
-        await this.astrosService.updateAstroById(astroId, astroName, astroAge, astroConstellation, astroImage, astroSect, astroTelescope, astroType, astroUniverse);
+        await this.astrosService.updateAstroById(astroId, astroName, astroType, astroAge, astroConstellation, astroImage, astroSect, astroTelescope, astroUniverse);
         return null;
     }
 

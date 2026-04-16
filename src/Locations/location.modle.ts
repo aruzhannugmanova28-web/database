@@ -1,4 +1,4 @@
-import * as moongoose from 'mongoose';
+import * as mongoose from 'mongoose';
 import { Astro, AstroSchema } from 'src/astronomy/astronomy.model';
 
 export const LocationSchema = new mongoose.Schema({
