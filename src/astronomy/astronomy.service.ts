@@ -9,7 +9,7 @@ export class AstroService{
 
     constructor(@InjectModel('Astro') private readonly astroModel: Model<Astro>, @InjectModel('Location') private readonly locationModel: Model<Location>,){}
 
-    async getAllANebulas(){
+    async getAllNebulas(){
         const astros = await this.astroModel.find().exec();
         const nebulas = astros.filter((e) => e.sect === "Nebulas");
         return nebulas.map(c => ({
@@ -25,19 +25,19 @@ export class AstroService{
         }));
     }
 
-    async getbyName(name: string){
+    async getAllGalaxies(){
         const astros = await this.astroModel.find().exec();
-        const name_astro = astros.filter((e)=> e.name === name);
-        return name_astro.map(c => ({
+        const nebulas = astros.filter((e) => e.sect === "Galaxies");
+        return nebulas.map(c => ({
             id: c.id,
             name: c.name, 
             type: c.type,
             age: c.age, 
+            sect: c.sect,
             universe: c.universe, 
             telescope: c.telescope, 
             constellation: c.constellation,
-            image: c.image, 
-            sect: c.sect,
+            image: c.image
         }));
     }
 
@@ -140,6 +140,77 @@ export class AstroService{
         let astro; 
         try {
             astro = await this.astroModel.findById(astroId)
+        } catch (error) {
+            throw new NotFoundException('Astro does not exist');
+
+        }
+        if (!astro) {
+            throw new NotFoundException('Astro does not exist')
+        }
+        return astro;
+    } 
+
+     async getbyName(astroName: string) {
+        const astro = await(await this.findAstrobyName(astroName));
+        return {name: astro.name, type: astro.type,
+            age: astro.age, 
+            universe: astro.universe, 
+            telescope: astro.telescope, 
+            constellation: astro.constellation,
+            image: astro.image, 
+            sect: astro.sect,};
+    }
+
+    async updateAstroByName(astroName:string, 
+    id:string,
+    type: string, 
+    age: number, 
+    universe: string, 
+    telescope: string, 
+    constellation: string, 
+    sect: string,
+    image: string){
+        const updateAstroByName = await this.findAstrobyName(astroName);
+
+        if (id) {
+            updateAstroByName.id = id;
+        }
+        if (age) {
+            updateAstroByName.age = age;
+        }
+        if (universe) {
+            updateAstroByName.universe = universe;
+        }
+        if (telescope) {
+            updateAstroByName.telescope = telescope;
+        }
+        if (type) {
+            updateAstroByName.type = type;
+        }
+        if (sect) {
+            updateAstroByName.sect = sect;
+        }
+        if (image) {
+            updateAstroByName.image = image;
+        }
+        if (constellation) {
+            updateAstroByName.constellation = constellation;
+        }
+        updateAstroByName.save();
+        //this.products[index]=update.Product;
+    }
+
+    async deleteAstroByName(astroName: string) {
+        const result = await this.astroModel.deleteOne({_name: astroName}).exec();
+        if (result.deletedCount === 0 ){
+            throw new NotFoundException('Astro does not exist')
+        }
+    }
+
+    private async findAstrobyName(astroName: string): Promise<Astro> {
+        let astro; 
+        try {
+            astro = await this.astroModel.findByName(astroName)
         } catch (error) {
             throw new NotFoundException('Astro does not exist');
 

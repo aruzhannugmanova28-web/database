@@ -30,7 +30,6 @@ export class AstroController {
     @Get(':id')
     async getAstroById(@Param('id') astroId: string,) {
         const astro = await this.astrosService.getAstroById(astroId);
-
         return astro;
     }
 
@@ -58,8 +57,42 @@ export class AstroController {
 
     @Get('sect/nebulas')
     async getAllNebulas(){
-        const astros = await this.astrosService.getAllANebulas();
+        const astros = await this.astrosService.getAllNebulas();
         return astros;
+    }
+
+    @Get('sect/galaxies')
+    async getAllGalaxies(){
+        const astros = await this.astrosService.getAllGalaxies();
+        return astros;
+    }
+
+    @Get(':name')
+    async getbyName(@Param('name') astroName: string,) {
+        const astro = await this.astrosService.getbyName(astroName);
+        return astro;
+    }
+
+    @Patch(':id')
+    async updateAstroByName(
+        @Param('id') astroId: string, 
+        @Body('name') astroName: string, 
+        @Body('age') astroAge: number, 
+        @Body('type') astroType: string, 
+        @Body('constellation') astroConstellation: string, 
+        @Body('image') astroImage: string, 
+        @Body('telescope') astroTelescope: string, 
+        @Body('universe') astroUniverse: string, 
+        @Body('sect') astroSect: string,
+    ) {
+        await this.astrosService.updateAstroByName(astroId, astroName, astroType, astroAge, astroConstellation, astroImage, astroSect, astroTelescope, astroUniverse);
+        return null;
+    }
+
+    @Delete(':id')
+    async deleteAstroByName(@Param('id') astroName: string,) {
+        await this.astrosService.deleteAstroByName(astroName);
+        return null;
     }
 
 }
