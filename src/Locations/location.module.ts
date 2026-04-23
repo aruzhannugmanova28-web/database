@@ -1,15 +1,15 @@
 import {Module} from '@nestjs/common';
-import { AstroController } from './astronomy.controller';
-import { AstroService } from './astronomy.service';
+import { LocationController } from './location.controllers';
+import {LocationService } from './location.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AstroSchema } from './astronomy.model';
+import {LocationSchema } from './location.model';
 import {LocationSchema} from 'src/Locations/location.model';
 
 @Module({
     imports: [
         MongooseModule.forFeature([{name: 'Astro', schema: AstroSchema }]), 
         MongooseModule.forFeature([{name: 'Location', schema: LocationSchema}])], 
-    controllers: [AstroController], 
-    providers: [AstroService]
+    controllers: [LocationController], 
+    providers: [LocationService]
 })
 export class AstroModule {}

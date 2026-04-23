@@ -1,9 +1,9 @@
 import {Controller, Post, Patch, Delete, Body, Get, Param} from '@nestjs/common';
-import {AstroService} from './astronomy.service'
+import {LocationService} from './location.service'
 
-@Controller('astro')
-export class AstroController {
-    constructor(private readonly astrosService: AstroService){}
+@Controller('location')
+export class LocationController {
+    constructor(private readonly astrosService: LocationService){}
 
     @Get()
     async getAllAstros() {

@@ -151,7 +151,7 @@ export class AstroService{
     } 
 
      async getbyName(astroName: string) {
-        const astro = await(await this.findAstrobyName(astroName));
+        const astro = await this.findAstrobyName(astroName);
         return {name: astro.name, type: astro.type,
             age: astro.age, 
             universe: astro.universe, 
@@ -201,7 +201,7 @@ export class AstroService{
     }
 
     async deleteAstroByName(astroName: string) {
-        const result = await this.astroModel.deleteOne({_name: astroName}).exec();
+        const result = await this.astroModel.deleteOne({ name: astroName }).exec();
         if (result.deletedCount === 0 ){
             throw new NotFoundException('Astro does not exist')
         }
@@ -210,7 +210,7 @@ export class AstroService{
     private async findAstrobyName(astroName: string): Promise<Astro> {
         let astro; 
         try {
-            astro = await this.astroModel.findByName(astroName)
+            astro = await this.astroModel.findOne({ name: astroName }).exec();
         } catch (error) {
             throw new NotFoundException('Astro does not exist');
 

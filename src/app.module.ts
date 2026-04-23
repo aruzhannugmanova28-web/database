@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
-import { LocationSchema } from './Locations/location.modle';
+import { LocationSchema } from './Locations/location.model';
 import { AstroSchema } from './astronomy/astronomy.model';
 import { AstroModule } from './astronomy/astronomy.module';
 
