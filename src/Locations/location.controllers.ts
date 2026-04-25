@@ -3,95 +3,93 @@ import {LocationService} from './location.service'
 
 @Controller('location')
 export class LocationController {
-    constructor(private readonly astrosService: LocationService){}
+    constructor(private readonly locationsService: LocationService){}
 
     @Get()
-    async getAllAstros() {
-        const astros = await this.astrosService.getAllAstros();
-        return astros;
+    async getAllLocations() {
+        return this.locationsService.getAllLocations();
     }
 
     @Post()
-    async addAstro(
-        @Body('name') astroName: string, 
-        @Body('age') astroAge: number, 
-        @Body('type') astroType: string, 
-        @Body('constellation') astroConstellation: string, 
-        @Body('image') astroImage: string, 
-        @Body('telescope') astroTelescope: string, 
-        @Body('universe') astroUniverse: string, 
-        @Body('sect') astroSect: string,
+    async addLocation(
+        @Body('name') locationName: string, 
+        @Body('country') locationCountry: string, 
+        @Body('latitude') locationLatitude: number, 
+        @Body('longitude') locationLongitude: number, 
+        @Body('elevation') locationElevation: number, 
+        @Body('established') locationEstablished: number, 
+        @Body('type') locationType: string, 
     ) {
 
-        const generatedId= await this.astrosService.insertAstro(astroName, astroType, astroAge, astroUniverse, astroTelescope, astroConstellation, astroSect, astroImage);
+        const generatedId= await this.locationsService.insertLocation(locationName, locationCountry, locationLatitude, locationLongitude,
+            locationElevation, locationEstablished, locationType,);
         return {id: generatedId};
     }
 
-    @Get('sect/nebulas')
-    async getAllNebulas(){
-        const astros = await this.astrosService.getAllNebulas();
-        return astros;
+    @Get('country/US')
+    async getAllUS(){
+        const locations = await this.locationsService.getAllUS();
+        return locations;
     }
 
-    @Get('sect/galaxies')
-    async getAllGalaxies(){
-        const astros = await this.astrosService.getAllGalaxies();
-        return astros;
+    @Get('country/Russia')
+    async getAllRussia(){
+        const locations = await this.locationsService.getAllRussia();
+        return locations;
     }
 
     @Get('name/:name')
-    async getbyName(@Param('name') astroName: string,) {
-        const astro = await this.astrosService.getbyName(astroName);
-        return astro;
+    async getByName(@Param('name') locationName: string,) {
+        const location = await this.locationsService.getByName(locationName);
+        return location;
     }
 
     @Patch('name/:name')
-    async updateAstroByName(
-        @Param('name') astroName: string, 
-        @Body('id') astroId: string, 
-        @Body('age') astroAge: number, 
-        @Body('type') astroType: string, 
-        @Body('constellation') astroConstellation: string, 
-        @Body('image') astroImage: string, 
-        @Body('telescope') astroTelescope: string, 
-        @Body('universe') astroUniverse: string, 
-        @Body('sect') astroSect: string,
+    async updateLocationByName(
+        @Param('name') locationName: string, 
+        @Body('id') locationId: string, 
+        @Body('country') locationCountry: string, 
+        @Body('latitude') locationLatitude: number, 
+        @Body('longitude') locationLongitude: number, 
+        @Body('elevation') locationElevation: number, 
+        @Body('established') locationEstablished: number, 
+        @Body('type') locationType: string, 
     ) {
-        await this.astrosService.updateAstroByName(astroId, astroName, astroType, astroAge, astroConstellation, astroImage, astroSect, astroTelescope, astroUniverse);
+        await this.locationsService.updateLocationByName(locationName, locationId, locationCountry, locationLatitude, locationLongitude,
+            locationElevation, locationEstablished, locationType,);
         return null;
     }
 
     @Delete('name/:name')
-    async deleteAstroByName(@Param('id') astroName: string,) {
-        await this.astrosService.deleteAstroByName(astroName);
+    async deleteLocationByName(@Param('name') locationName: string,) {
+        await this.locationsService.deleteLocationByName(locationName);
         return null;
     }
 
     @Get(':id')
-    async getAstroById(@Param('id') astroId: string,) {
-        const astro = await this.astrosService.getAstroById(astroId);
-        return astro;
+    async getLocationById(@Param('id') locationId: string) {
+        return this.locationsService.getLocationById(locationId);
     }
 
     @Patch(':id')
-    async updateAstroById(
-        @Param('id') astroId: string, 
-        @Body('name') astroName: string, 
-        @Body('age') astroAge: number, 
-        @Body('type') astroType: string, 
-        @Body('constellation') astroConstellation: string, 
-        @Body('image') astroImage: string, 
-        @Body('telescope') astroTelescope: string, 
-        @Body('universe') astroUniverse: string, 
-        @Body('sect') astroSect: string,
+    async updateLocationById(
+        @Param('id') locationId: string, 
+        @Body('name') locationName: string, 
+        @Body('country') locationCountry: string, 
+        @Body('latitude') locationLatitude: number, 
+        @Body('longitude') locationLongitude: number, 
+        @Body('elevation') locationElevation: number, 
+        @Body('established') locationEstablished: number, 
+        @Body('type') locationType: string, 
     ) {
-        await this.astrosService.updateAstroById(astroId, astroName, astroType, astroAge, astroConstellation, astroImage, astroSect, astroTelescope, astroUniverse);
+        await this.locationsService.updateLocationById(locationId, locationName, locationCountry, locationLatitude,
+            locationLongitude, locationElevation, locationEstablished, locationType,);
         return null;
     }
 
     @Delete(':id')
-    async deleteAstroById(@Param('id') astroId: string,) {
-        await this.astrosService.deleteAstroById(astroId);
+    async deleteLocationById(@Param('id') locationId: string,) {
+        await this.locationsService.deleteLocationById(locationId);
         return null;
     }
 

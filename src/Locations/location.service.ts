@@ -7,12 +7,11 @@ import { Location } from './location.model';
 @Injectable()
 export class LocationService{
 
-    constructor(@InjectModel('Location') private readonly Location: Model<Location>, @InjectModel('Location') private readonly locationModel: Model<Location>,){}
+    constructor(@InjectModel('Location') private readonly locationModel: Model<Location>,){}
 
     async getAllUS(){
-        const locations = await this.locationModel.find().exec();
-        const usa = locations.filter((e) => e.country === "USA");
-        return usa.map(c => ({
+        const locations = await this.locationModel.find({country: 'USA'}).exec();
+        return locations.map(c => ({
             id: c.id,
             name: c.name, 
             country: c.country, 
@@ -25,9 +24,8 @@ export class LocationService{
     }
 
     async getAllRussia(){
-        const astros = await this.locationModel.find().exec();
-        const russia = astros.filter((e) => e.country === "Russia");
-        return russia.map(c => ({
+        const locations = await this.locationModel.find({country: "Russia"}).exec();
+        return locations.map(c => ({
             id: c.id,
             name: c.name, 
             country: c.country, 
@@ -41,7 +39,6 @@ export class LocationService{
 
     async getAllLocations() {
         const locations = await this.locationModel.find().exec();
-
         return locations.map(c => ({ 
             id: c.id,
             name: c.name, 
@@ -76,8 +73,8 @@ export class LocationService{
         return result.id as string; 
     }
 
-    async getLocationoById(LocationId: string) {
-        const location = await(await this.findLocation(LocationId));
+    async getLocationById(locationId: string) {
+        const location = await this.findLocation(locationId);
         return {name: location.name, 
             country: location.country, 
             latitude: location.latitude, 
@@ -88,14 +85,17 @@ export class LocationService{
           };
     }
 
-    async updateLocationById(LocationId:string,   name: string, 
+    async updateLocationById(
+    locationId:string,   
+    name: string, 
     country: string, 
     latitude: number, 
     longitude: number, 
     elevation: number, 
     established: number, 
-    type: string){
-        const updateLocation = await this.findLocation(LocationId);
+    type: string)
+    {
+        const updateLocation = await this.findLocation(locationId);
 
         if (name) {
             updateLocation.name = name;
@@ -118,12 +118,12 @@ export class LocationService{
         if (type) {
             updateLocation.type = type;
         }
-        updateLocation.save();
+        await updateLocation.save();
         //this.products[index]=update.Product;
     }
 
-    async deleteLocationById(LocationId: string) {
-        const result = await this.locationModel.deleteOne({_id: LocationId}).exec();
+    async deleteLocationById(locationId: string) {
+        const result = await this.locationModel.deleteOne({_id: locationId}).exec();
         if (result.deletedCount === 0 ){
             throw new NotFoundException('Location does not exist')
         }
@@ -143,26 +143,26 @@ export class LocationService{
         return location;
     } 
 
-     async getbyName(LocationName: string) {
+     async getByName(locationName: string) {
         const location = await this.findLocationbyName(locationName);
-        return {name: astro.name, type: astro.type,
-            age: astro.age, 
-            universe: astro.universe, 
-            telescope: astro.telescope, 
-            constellation: astro.constellation,
-            image: astro.image, 
-            sect: astro.sect,};
+        return {name: location.name, 
+            country: location.country, 
+            latitude: location.latitude, 
+            longitude: location.longitude, 
+            elevation: location.elevation, 
+            established: location.established, 
+            type: location.type};
     }
 
-    async updateLocationByName(LocationName:string, 
-    id:string,
-    type: string, 
-    age: number, 
-    universe: string, 
-    telescope: string, 
-    constellation: string, 
-    sect: string,
-    image: string){
+    async updateLocationByName(
+    locationName:string, 
+    id: string, 
+    country: string, 
+    latitude: number, 
+    longitude: number, 
+    elevation: number, 
+    established: number, 
+    type: string){
         const updateLocationByName = await this.findLocationbyName(locationName);
 
         if (id) {
@@ -171,26 +171,26 @@ export class LocationService{
         if (country) {
             updateLocationByName.country = country;
         }
-        if (universe) {
-            updateLocationByName.universe = universe;
+        if (latitude) {
+            updateLocationByName.latitude = latitude;
         }
-        if (telescope) {
-            updateLocationByName.telescope = telescope;
+        if (longitude) {
+            updateLocationByName.longitude = longitude;
+        }
+        if (elevation) {
+            updateLocationByName.elevation = elevation;
+        }
+        if (established) {
+            updateLocationByName.established = established;
         }
         if (type) {
             updateLocationByName.type = type;
         }
-        if (sect) {
-            updateLocationByName.sect = sect;
-        }
-        if (image) {
-            updateLocationByName.image = image;
-        }
-        updateLocationByName.save();
+        await updateLocationByName.save();
         //this.products[index]=update.Product;
     }
 
-    async deleteLocationByName(astroName: string) {
+    async deleteLocationByName(locationName: string) {
         const result = await this.locationModel.deleteOne({ name: locationName }).exec();
         if (result.deletedCount === 0 ){
             throw new NotFoundException('Location does not exist')

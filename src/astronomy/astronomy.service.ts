@@ -1,3 +1,4 @@
+// Astronomy service handles all database operations for astronomical objects
 import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from 'mongoose';
@@ -9,6 +10,7 @@ export class AstroService{
 
     constructor(@InjectModel('Astro') private readonly astroModel: Model<Astro>, @InjectModel('Location') private readonly locationModel: Model<Location>,){}
 
+        /// Returns only astros where sect is "Nebulas"
     async getAllNebulas(){
         const astros = await this.astroModel.find().exec();
         const nebulas = astros.filter((e) => e.sect === "Nebulas");
@@ -24,6 +26,8 @@ export class AstroService{
             image: c.image
         }));
     }
+
+    // Returns only astros where sect is "Galaxies"
 
     async getAllGalaxies(){
         const astros = await this.astroModel.find().exec();
@@ -56,7 +60,7 @@ export class AstroService{
             sect: c.sect,
         }));
     }
-
+    // Creates a new astro document in the DB and returns its generated id
     async insertAstro(
     name: string, 
     type: string, 

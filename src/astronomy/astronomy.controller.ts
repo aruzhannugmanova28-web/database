@@ -85,7 +85,16 @@ export class AstroController {
         @Body('universe') astroUniverse: string, 
         @Body('sect') astroSect: string,
     ) {
-        await this.astrosService.updateAstroById(astroId, astroName, astroType, astroAge, astroConstellation, astroImage, astroSect, astroTelescope, astroUniverse);
+        await this.astrosService.updateAstroById(
+        astroId,
+        astroName,
+        astroType,
+        astroAge,
+        astroUniverse,
+        astroTelescope,
+        astroConstellation,
+        astroSect,
+        astroImage,);
         return null;
     }
 
