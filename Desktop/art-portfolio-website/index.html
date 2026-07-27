@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aruzhan Nugmanova — Visual Art</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,200;9..144,300;9..144,400;9..144,500;9..144,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Caveat:wght@400;500;600&family=Allura&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="intro-active">
+
+  <!-- ============================================
+       INTRO ANIMATION
+       ============================================ -->
+  <div id="intro">
+
+    <div class="stars-bg" id="starsBg"></div>
+    <div class="meteor"></div>
+
+    <div id="name-stage">
+
+      <!-- Row 1: "Aruzhan" — the A is our elongated pentagram -->
+      <div class="name-row row-1">
+
+        <span class="a-slot">
+          <!-- Sparkles that fly out when the meteor lands on the star -->
+          <span class="burst" style="--dx:  40px; --dy: -25px;"></span>
+          <span class="burst" style="--dx: -35px; --dy: -30px;"></span>
+          <span class="burst" style="--dx: -30px; --dy:  35px;"></span>
+          <span class="burst" style="--dx:  45px; --dy:  25px;"></span>
+          <span class="burst" style="--dx:   5px; --dy: -45px;"></span>
+          <span class="burst" style="--dx: -10px; --dy:  45px;"></span>
+
+          <!-- Elongated asymmetric pentagram, matching Aruzhan's Illustrator logo:
+               - Upper-right point stretches far right (the comet-tail sweep)
+               - Upper-left point is short/tucked in
+               - Lines drawn in reference order (A peak first, then the rest) -->
+          <svg class="a-star" viewBox="0 0 520 340">
+            <!-- Blurred glow layer under the strokes for depth -->
+            <line class="glow" x1="95"  y1="335" x2="145" y2="20"
+                  pathLength="100" style="--delay: 1.35s; --dur: 0.35s;" />
+            <line class="glow" x1="145" y1="20"  x2="200" y2="335"
+                  pathLength="100" style="--delay: 1.70s; --dur: 0.35s;" />
+            <line class="glow" x1="200" y1="335" x2="25"  y2="175"
+                  pathLength="100" style="--delay: 2.00s; --dur: 0.35s;" />
+            <line class="glow" x1="25"  y1="175" x2="515" y2="100"
+                  pathLength="100" style="--delay: 2.30s; --dur: 0.50s;" />
+            <line class="glow" x1="515" y1="100" x2="95"  y2="335"
+                  pathLength="100" style="--delay: 2.65s; --dur: 0.40s;" />
+
+            <!-- Main gold strokes -->
+            <line class="stroke" x1="95"  y1="335" x2="145" y2="20"
+                  pathLength="100" style="--delay: 1.35s; --dur: 0.35s;" />
+            <line class="stroke" x1="145" y1="20"  x2="200" y2="335"
+                  pathLength="100" style="--delay: 1.70s; --dur: 0.35s;" />
+            <line class="stroke" x1="200" y1="335" x2="25"  y2="175"
+                  pathLength="100" style="--delay: 2.00s; --dur: 0.35s;" />
+            <line class="stroke" x1="25"  y1="175" x2="515" y2="100"
+                  pathLength="100" style="--delay: 2.30s; --dur: 0.50s;" />
+            <line class="stroke" x1="515" y1="100" x2="95"  y2="335"
+                  pathLength="100" style="--delay: 2.65s; --dur: 0.40s;" />
+          </svg>
+        </span>
+
+        <span class="letter">r</span>
+        <span class="letter">u</span>
+        <span class="letter">z</span>
+        <span class="letter">h</span>
+        <span class="letter">a</span>
+        <span class="letter">n</span>
+      </div>
+
+      <!-- Row 2: "Nugmanova" -->
+      <div class="name-row row-2">
+        <span class="letter">N</span>
+        <span class="letter">u</span>
+        <span class="letter">g</span>
+        <span class="letter">m</span>
+        <span class="letter">a</span>
+        <span class="letter">n</span>
+        <span class="letter">o</span>
+        <span class="letter">v</span>
+        <span class="letter">a</span>
+      </div>
+    </div>
+
+    <p class="intro-tagline">artist · maker · central asian student</p>
+    <button id="enter-btn">enter the gallery</button>
+    <button class="skip" id="skipBtn">skip intro →</button>
+  </div>
+
+  <!-- ============================================
+       MAIN SITE
+       ============================================ -->
+  <div id="main">
+
+    <nav class="top">
+      <a href="#top" class="mark">aruzhanini</a>
+      <ul>
+        <li><a href="#gallery">gallery</a></li>
+        <li><a href="#about">about</a></li>
+        <li><a href="#cv">cv</a></li>
+        <li><a href="#contact">contact</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero" id="top">
+      <div class="eyebrow">visual artist</div>
+      <h1>Aruzhan Nugmanova</h1>
+      <div class="star-divider">
+        <span class="line"></span>
+        <svg viewBox="0 0 20 20"><path d="M10 1 L12.4 7.6 L19.5 8 L13.8 12.2 L15.8 19 L10 15 L4.2 19 L6.2 12.2 L0.5 8 L7.6 7.6 Z"/></svg>
+        <span class="line"></span>
+      </div>
+      <p class="sub">a small archive of things I've made</p>
+      <p class="meta">painting · sculpture · 3d · ceramics · digital</p>
+    </section>
+
+    <section class="gallery-section" id="gallery">
+      <div class="section-head">
+        <h2>gallery</h2>
+        <span class="count" id="count">12 works</span>
+      </div>
+
+      <div class="filters" id="filters">
+        <button class="filter active" data-f="all">all</button>
+        <button class="filter" data-f="painting">paintings</button>
+        <button class="filter" data-f="sculpture">sculpture &amp; ceramics</button>
+        <button class="filter" data-f="3d">3d &amp; digital</button>
+        <button class="filter" data-f="design">design</button>
+      </div>
+
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section class="section" id="about">
+      <h2>about</h2>
+      <p class="lead">A Central Asian girl from Kazakhstan, currently making things at Milton Academy.</p>
+      <p>I work across paintings, ceramics, 3D modeling, and digital illustration. My work returns again and again to the same questions: what does it mean to belong to two places at once? How do you carry a culture across an ocean? What survives translation, and what can only be made new?</p>
+      <p>Many of my pieces draw from Kazakh visual heritage, the shanyrak, the ornaments, the steppe, and place it in conversation with the worlds I'm finding here. The star you saw at the start of this site appears throughout my work. I keep coming back to it.</p>
+    </section>
+
+    <section class="section" id="cv">
+      <h2>cv</h2>
+
+      <div class="cv-block">
+        <h3>Education</h3>
+        <ul>
+          <li><span class="desc">Milton Academy</span><span class="yr">2025 – present</span></li>
+          <li><span class="desc">Interlochen Arts Academy</span><span class="yr">2024 – 2025</span></li>
+          <li><span class="desc">Indigo Art School</span><span class="yr">2021 – 2024</span></li>
+          <li><span class="desc">National School of Physics and Math (NSPM)</span><span class="yr">2016 – 2024</span></li>
+        </ul>
+      </div>
+
+      <div class="cv-block">
+        <h3>Permanent Installations</h3>
+        <ul>
+          <li>
+            <span class="desc"><span class="highlight">Claire Skinner Memorial Competition Winner</span> · symbolic sculpture created in collaboration with Brandon Zhang, selected for permanent installation on the Interlochen Center for the Arts campus. Unveiling reception to come.</span>
+            <span class="yr">2026</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cv-block">
+        <h3>Selected Awards &amp; Recognition</h3>
+        <ul>
+          <li>
+            <span class="desc"><span class="highlight">American Visions Nominee</span> for <em>My Heritage</em>, one of the five best works selected across all art categories in Massachusetts · Scholastic Art &amp; Writing Awards</span>
+            <span class="yr">2026</span>
+          </li>
+          <li>
+            <span class="desc">Scholastic Art &amp; Writing Awards, Massachusetts · 3 Gold Keys, 3 Silver Keys, 2 Honorable Mentions in Art</span>
+            <span class="yr">2026</span>
+          </li>
+          <li>
+            <span class="desc">Scholastic Art &amp; Writing Awards, Massachusetts · 1 Gold Key in Poetry, 1 Honorable Mention in Critical Essay</span>
+            <span class="yr">2026</span>
+          </li>
+          <li>
+            <span class="desc"><span class="highlight">Persky Award</span> for artwork showcased in Milton Academy student publications, recognizing <em>My Heritage</em> · 47th Persky Awards</span>
+            <span class="yr">2026</span>
+          </li>
+          <li>
+            <span class="desc">Scholastic Art &amp; Writing Awards, Michigan · 2 Silver Keys, 3 Honorable Mentions in Art</span>
+            <span class="yr">2025</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cv-block">
+        <h3>Exhibitions</h3>
+        <ul>
+          <li>
+            <span class="desc">Regional Scholastic Exhibition, Tufts University · sponsored by Scholastic. Delivered a speech as an American Visions Nominee.</span>
+            <span class="yr">March 2026</span>
+          </li>
+          <li>
+            <span class="desc">Student Jury Exhibition, Traverse City, Michigan · two works sold</span>
+            <span class="yr">January 2025</span>
+          </li>
+          <li>
+            <span class="desc">National Museum of Art, Astana, Kazakhstan</span>
+            <span class="yr">July – September 2024</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cv-block">
+        <h3>Skills &amp; Media</h3>
+        <p style="margin: 0;">Acrylic and oil painting · Watercolor · Ceramics and sculpture · Jewelry · 3D modeling in Blender · Adobe Illustrator · Adobe Photoshop · Architectural model-making</p>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <h2>contact</h2>
+      <p class="lead">For inquiries, collaborations, or just to say hello.</p>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="label">email</div>
+          <a href="mailto:aruzhan.nugmanova16@gmail.com">aruzhan.nugmanova16@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <div class="label">instagram</div>
+          <a href="https://instagram.com/aruzhamimi" target="_blank" rel="noopener">@aruzhamimi</a>
+        </div>
+        <div class="contact-item">
+          <div class="label">based in</div>
+          <a href="#">Milton, MA · Astana, KZ</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span class="star">✦</span> made with care, 2026 <span class="star">✦</span>
+    </footer>
+  </div>
+
+  <!-- ============================================
+       LIGHTBOX MODAL (hidden until artwork clicked)
+       ============================================ -->
+  <div id="lightbox" aria-hidden="true">
+    <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
+
+    <div class="lb-inner">
+      <div class="lb-image-wrap">
+        <img id="lbImage" src="" alt="">
+        <div class="lb-placeholder" id="lbPlaceholder"></div>
+      </div>
+
+      <div class="lb-info">
+        <div class="lb-meta">
+          <h3 id="lbTitle"></h3>
+          <span id="lbYear"></span>
+        </div>
+        <p id="lbMedium"></p>
+        <span id="lbBadge" class="lb-badge"></span>
+        <div class="lb-dots" id="lbDots"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
